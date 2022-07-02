@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  commands:
+  - "apt install unzip -y"
+  - "wget https://releases.hashicorp.com/terraform/1.0.5/terraform_1.0.5_linux_amd64.zip"
+  - "unzip terraform_1.0.5_linux_amd64.zip"
+  - "mv terrafrom /usr/local/bin"
+  prebuild:
+  commands:
+  - terraform init
+
+  build:
+  commands:
+  - terraform $TF_COMMAND -auto-approve
+
+  post_build:
+  commands:
+  - echo terraform $tf-command complete on 'date'
